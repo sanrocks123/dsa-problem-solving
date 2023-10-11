@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
-import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -25,8 +24,8 @@ public class HashingTest {
     @Test
     public void testDistinctElementInEvryWindowOfSizeK() {
 
-        final int arr[] = {1, 2, 1, 3, 4, 2, 3};
-        System.out.println("i/p list : " + Arrays.stream(arr).boxed().collect(Collectors.toList()));
+        final int[] arr = {1, 2, 1, 3, 4, 2, 3};
+        System.out.println("i/p list : " + Arrays.stream(arr).boxed().toList());
 
         final Map<Integer, Integer> hm = new HashMap<>();
 
@@ -80,7 +79,8 @@ public class HashingTest {
     @Test
     public void testLongestConsecutiveSubsequence() {
         final Set<Integer> hash = new HashSet<>();
-        final int arr[] = {1, 9, 3, 10, 4, 20, 2};
+        final int[] arr = {1, 9, 3, 10, 4, 20, 2};
+
         for (final int a : arr) {
             hash.add(a);
         }
@@ -177,7 +177,7 @@ public class HashingTest {
      */
     @Test
     public void testLargestSubarrayWithZeroSum() {
-        int arr[] = {15, -2, 2, -8, 1, 7, 10, 23};
+        int[] arr = {15, -2, 2, -8, 1, 7, 10, 23};
 
         Map<Integer, Integer> map = new HashMap<>();
         int sum = 0;
@@ -253,7 +253,8 @@ public class HashingTest {
         // print tree map
         System.out.printf("frequency2ElementMap: %s", frequency2ElementMap);
         List<Integer> output = new ArrayList<>();
-        frequency2ElementMap.keySet().stream()
+        frequency2ElementMap
+                .keySet()
                 .forEach(
                         key -> {
                             output.addAll(frequency2ElementMap.get(key));
