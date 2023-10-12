@@ -1,9 +1,8 @@
 /* (C) 2023 */
 package dsa;
 
-import java.util.Deque;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
+import java.util.concurrent.LinkedBlockingDeque;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -18,9 +17,40 @@ public class QueueTest {
     @Test
     public void testLRUCache() {
 
-        final Deque<Integer> dq = new LinkedList<>();
+        Deque<Integer> deque = new LinkedBlockingDeque<>(3);
+        Set<Integer> hashTable = new LinkedHashSet<>();
 
-        System.out.println(dq);
+        Integer[] pages = {2, 3, 4, 2, 5, 4, 3};
+        System.out.printf("pages : %s", Arrays.stream(pages).toList());
+
+        for (Integer page : pages) {
+
+            System.out.printf("\n\npageNo : %d", page);
+            System.out.printf("\ncache status : %s", deque);
+            System.out.printf("\nhash status: %s", hashTable);
+
+            if (hashTable.contains(page)) {
+                System.out.printf("\ncache hit - %d", page);
+                if (deque.remove(page)) {
+                    deque.push(page);
+                }
+                System.out.printf("\ncache status : %s", deque);
+                System.out.printf("\nhash status: %s", hashTable);
+
+            } else {
+                System.out.printf("\ncache miss - %d", page);
+                if (deque.size() == 3) {
+                    Integer lruInteger = deque.removeLast();
+                    hashTable.remove(lruInteger);
+                }
+
+                hashTable.add(page);
+                deque.push(page);
+
+                System.out.printf("\ncache status : %s", deque);
+                System.out.printf("\nhash status: %s", hashTable);
+            }
+        }
     }
 
     @Test

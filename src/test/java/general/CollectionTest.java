@@ -2,10 +2,9 @@
 package general;
 
 import java.util.*;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Java Source CollectionTest.java created on Dec 21, 2019
@@ -14,16 +13,15 @@ import org.slf4j.LoggerFactory;
  * @version : 1.0
  * @email : sanrocks123@gmail.com
  */
+@Slf4j
 public class CollectionTest {
-
-    private final Logger log = LoggerFactory.getLogger(getClass());
 
     @Test
     public void testBinarySearch() {
         final List<String> str = Arrays.asList("mumbai", "pune", "new york", "sydney");
-        Collections.sort(str);
+        str.sort((o1, o2) -> o2.compareTo(o1));
 
-        log.info("sorted list: {}", str);
+        System.out.printf("sorted list : %s", str);
     }
 
     @Test

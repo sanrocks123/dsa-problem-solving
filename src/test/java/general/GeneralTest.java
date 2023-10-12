@@ -94,21 +94,6 @@ public class GeneralTest {
     }
 
     @Test
-    public void testLRUCache() {
-
-        final BlockingQueue<Employee> queue = new ArrayBlockingQueue<>(3);
-        queue.add(new Employee(1, "A"));
-        queue.add(new Employee(2, "B"));
-        queue.add(new Employee(3, "C"));
-
-        queue.offer(new Employee(4, "D"));
-
-        final int a = 925 % 50;
-        log.info("Mod {}", a);
-        log.info("Queue {}", queue);
-    }
-
-    @Test
     public void testNullReferenceOverriding() {
         final ExtendedImmutableClass ext = new ExtendedImmutableClass(123);
         final Object aa = null;
